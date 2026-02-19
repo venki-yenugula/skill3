@@ -1,0 +1,10 @@
+public static void sortProductsByQuantityDescending(Session session) {
+    String hql = "FROM Product p ORDER BY p.quantity DESC";
+    Query<Product> query = session.createQuery(hql, Product.class);
+    List<Product> products = query.list();
+    
+    System.out.println("\n=== Products Sorted by Quantity (Highest First) ===");
+    for (Product product : products) {
+        System.out.println(product.getName() + " - Quantity: " + product.getQuantity());
+    }
+}
