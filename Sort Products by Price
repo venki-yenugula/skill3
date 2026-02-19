@@ -1,0 +1,42 @@
+3a. Ascending Order
+HQL Query:
+public static void sortProductsByPriceAscending(Session session) {
+    String hql = "FROM Product p ORDER BY p.price ASC";
+    Query<Product> query = session.createQuery(hql, Product.class);
+    List<Product> products = query.list();
+    
+    System.out.println("\n=== Products Sorted by Price (Ascending) ===");
+    for (Product product : products) {
+        System.out.println(product);
+    }
+}
+Expected Output:
+Notebook - $5.99
+Pen Set - $12.50
+Mouse - $25.50
+Desk Lamp - $35.75
+Keyboard - $45.00
+Desk Chair - $150.00
+Monitor - $299.99
+Laptop - $899.99
+3b. Descending Order
+HQL Query:
+public static void sortProductsByPriceDescending(Session session) {
+    String hql = "FROM Product p ORDER BY p.price DESC";
+    Query<Product> query = session.createQuery(hql, Product.class);
+    List<Product> products = query.list();
+    
+    System.out.println("\n=== Products Sorted by Price (Descending) ===");
+    for (Product product : products) {
+        System.out.println(product);
+    }
+}
+Expected Output:
+Laptop - $899.99
+Monitor - $299.99
+Desk Chair - $150.00
+Keyboard - $45.00
+Desk Lamp - $35.75
+Mouse - $25.50
+Pen Set - $12.50
+Notebook - $5.99
