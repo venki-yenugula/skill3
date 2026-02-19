@@ -1,0 +1,41 @@
+public static void getFirstThreeProducts(Session session) {
+    String hql = "FROM Product p";
+    Query<Product> query = session.createQuery(hql, Product.class);
+    query.setFirstResult(0);  // Start from index 0
+    query.setMaxResults(3);   // Get 3 records
+    
+    List<Product> products = query.list();
+    
+    System.out.println("\n=== First 3 Products ===");
+    for (Product product : products) {
+        System.out.println(product);
+    }
+}
+
+public static void getNextThreeProducts(Session session) {
+    String hql = "FROM Product p";
+    Query<Product> query = session.createQuery(hql, Product.class);
+    query.setFirstResult(3);  // Start from index 3 (skip first 3)
+    query.setMaxResults(3);   // Get 3 records
+    
+    List<Product> products = query.list();
+    
+    System.out.println("\n=== Next 3 Products ===");
+    for (Product product : products) {
+        System.out.println(product);
+    }
+}
+
+public static void getPaginatedProducts(Session session, int pageNumber, int pageSize) {
+    String hql = "FROM Product p";
+    Query<Product> query = session.createQuery(hql, Product.class);
+    query.setFirstResult((pageNumber - 1) * pageSize);
+    query.setMaxResults(pageSize);
+    
+    List<Product> products = query.list();
+    
+    System.out.println("\n=== Page " + pageNumber + " (Size: " + pageSize + ") ===");
+    for (Product product : products) {
+        System.out.println(product);
+    }
+}
